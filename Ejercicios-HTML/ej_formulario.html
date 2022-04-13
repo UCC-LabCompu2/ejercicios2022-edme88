@@ -18,26 +18,57 @@
     https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_output-->
 
 <h3>Suscribase a Nuestro Portal de Noticias! Crear una cuenta es rápido!</h3>
-Nombre:
-Apellido:
-Sexo: Masculino Femenino
-Edad:
-Email:
-Usuario:
-Password:
-Confirmar Password:
-
-Tipo de servicio: Free / Standard / Premium
-Tema:
-Política
-Negocios
-Tecnología
-Salud
-
-Agregue un comentario:
-
-Boton de Enviar
-
+<form name="form_suscripcion">
+    <p>
+        <label for="nombre">Nombre:</label> <input type="text" name="nombre" id="nombre" placeholder="Ingrese un nombre" size="40">
+    </p>
+    <p>
+        <label for="apellido">Apellido: </label> <input type="text" name="apellido" id="apellido" placeholder="Ingrese un apellido" size="40">
+    </p>
+    <p>
+        Sexo: <input type="radio" name="genero" value="masculino" id="masculino">
+              <label for="masculino">Masculino</label>
+              <input type="radio" name="genero" value="femenino" id="femenino">
+              <label for="femenino">Femenino</label>
+    </p>
+    <p>
+        <label for="edad">Edad:</label> <input type="number" name="edad" id="edad">
+    </p>
+    <p>
+        <label for="email">Email:</label> <input type="email" name="email" id="email" placeholder="usuario@dominio.com" size="40">
+    </p>
+    <p>
+        <label for="usuario">Usuario:</label> <input type="text" name="usuario" id="usuario"  placeholder="Usuario" size="40">
+    </p>
+    <p>
+        <label for="pass">Password:</label> <input type="password" name="pass" id="pass" maxlength="12" placeholder="password" size="40">
+    </p>
+    <p>
+        <label for="repeatPass">Confirmar Password:</label> <input type="password" name="pass" id="repeatPass" maxlength="12" placeholder="password" size="40">
+    </p>
+    <p>
+        <label for="tipoServicio">Tipo de servicio:</label>
+        <select name="tipoServicio" id="tipoServicio">
+            <option value="free">Free </option>
+            <option value="standard">Standard </option>
+            <option value="premium">Premium</option>
+        </select>
+    </p>
+    <p>
+        Tema:
+        <input type="checkbox" name="politica" id="politica"><label for="politica">Política</label>
+        <input type="checkbox" name="negocios" id="negocios"><label for="negocios">Negocios</label>
+        <input type="checkbox" name="tech" id="tech"><label for="tech">Tecnología</label>
+        <input type="checkbox" name="salud" id="salud"><label for="salud">Salud</label>
+    </p>
+    <p>
+        <label for="comentario">Agregue un comentario:</label>
+        <textarea name="comentario" id="comentario">Agregue un comentario</textarea>
+    </p>
+    <p>
+        <button>Boton de Enviar</button>
+    </p>
+</form>
 
 </body>
 </html>
