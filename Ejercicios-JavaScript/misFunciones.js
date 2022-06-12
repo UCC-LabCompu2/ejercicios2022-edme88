@@ -106,3 +106,167 @@ function cargarLS() {
     un = localStorage.getItem("unidadLS");
     document.getElementById("dist").value = cant + " " + un;
 }
+
+function dibujarCirculoCuadrado(){
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+
+    let xMax = canvas.width;
+    let yMax = canvas.height;
+    let margen = 10;
+    let tamCuadrado = 50;
+
+    ctx.fillRect(0+margen, yMax-tamCuadrado-margen, tamCuadrado, tamCuadrado);
+
+    ctx.arc(xMax/2, yMax/2, 20, 0, 2*Math.PI);
+    ctx.stroke();
+    ctx.fillStyle = "#3c91d2";
+    ctx.fill();
+}
+
+var bandera;
+function dibujar(){
+    let canvas = document.getElementById("lienzoDibujo");
+    let ctx = canvas.getContext("2d");
+
+    let posX = event.clientX;
+    let posY = event.clientY;
+
+    console.log(posX, posY);
+
+    canvas.onmousedown = function (){bandera=true};
+    canvas.onmouseup = function (){bandera=false};
+
+    if(bandera){
+        ctx.fillRect(posX, posY, 5, 5);
+    }
+
+}
+
+function borrarCanvas(){
+    let canvas = document.getElementById("lienzoDibujo");
+    let ctx = canvas.getContext("2d");
+
+    canvas.width = canvas.width;
+}
+
+function cargarListener(){
+    document.getElementById("lienzoDibujo").addEventListener("mousemove", function (event){
+        let canvas = document.getElementById("lienzoDibujo");
+        let ctx = canvas.getContext("2d");
+
+        let posX = event.clientX;
+        let posY = event.clientY;
+
+        canvas.onmousedown = function (){bandera=true};
+        canvas.onmouseup = function (){bandera=false};
+
+        if(bandera){
+            ctx.fillRect(posX, posY, 5, 5);
+        }
+
+    });
+}
+
+/**
+ * Dibuja un cuadriculado sobre
+ * @method dibujarCuadriculado
+ * @return {Number} anchoCanvas
+ */
+function dibujarCuadriculado(){
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+
+    let xMax = canvas.width;
+    let yMax = canvas.height;
+
+    //Dibujar Lineas Horizontales
+    for(let i=20; i<yMax;){
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(xMax, i);
+        ctx.strokeStyle = "#1b73f8";
+        ctx.stroke();
+        ctx.closePath();
+        i = i+20;
+    }
+
+    //Dibujar Lineas Verticales
+    for(let i=20; i<xMax;){
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, yMax);
+        ctx.strokeStyle = "#1b73f8";
+        ctx.stroke();
+        ctx.closePath();
+        i = i+20;
+    }
+
+    //Ejex
+    ctx.beginPath();
+    ctx.moveTo(0, yMax/2);
+    ctx.lineTo(xMax, yMax/2);
+    ctx.strokeStyle = "#ff0009";
+    ctx.stroke();
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.font="10pt Verdana";
+    ctx.fillStyle = "blue";
+    ctx.fillText( "Eje X", canvas.width/2, canvas.height/2);
+    ctx.closePath();
+
+    //Eje Y
+    ctx.beginPath();
+    ctx.moveTo(xMax/2, 0);
+    ctx.lineTo(xMax/2, yMax);
+    ctx.strokeStyle = "#ff0009";
+    ctx.stroke();
+    ctx.closePath();
+}
+
+/**
+ * Dibuja un auto en las coordenas que ingreso el usuario
+ * @method dibujarAuto
+ * @param {Number} posX - Id de los inputs del formulario
+ * @param {Number} posY - El valor de los inputs del formulario
+ */
+function dibujarAuto(posX, posY){
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+    let img;
+
+    canvas.width = canvas.width;
+
+    img = new Image();
+    img.src = "images/auto.png";
+
+    console.log(posX, posY);
+
+    img.onload = function (){
+        ctx.drawImage(img, posX, posY);
+        console.log("Se deberia dibujar la imagen");
+    }
+}
+
+x = 0;
+dx = 2;
+function animarAuto(){
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+    let img;
+
+    canvas.width = canvas.width;
+
+    img = new Image();
+    img.src = "images/auto.png";
+
+    img.onload = function (){
+        ctx.drawImage(img, x, 100);
+    }
+
+    if(x>canvas.width){
+        x = 0;
+    }
+    x = x+dx;
+}
